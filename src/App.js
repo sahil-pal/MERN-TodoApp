@@ -1,9 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
+import {DashBoard } from './modules/tasks/dashboard/presentation/pages/Dashboard';
 
 function App() {
   return (
-    <h1>TodoApp</h1>
+    <div className="container">
+      <DashBoard/>
+    </div>
   );
 }
 
