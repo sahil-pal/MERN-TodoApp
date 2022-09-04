@@ -1,5 +1,5 @@
 import { useState, useRef, useContext } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import Task from "../../domain/model/Task";
 import { taskContext } from "../../provider/TaskContext";
 
@@ -7,6 +7,7 @@ export const AddTask = () => {
 
     // const qs = props.location.search;
     // const queryStringObj = new URLSearchParams(qs);
+
     const [params] = useSearchParams();
     let flag = "";
     params.forEach((e)=> flag = e);
@@ -17,6 +18,8 @@ export const AddTask = () => {
     let date = useRef('');
     let color = useRef('');
     const TaskContext = useContext(taskContext);
+    // navigation hook
+    const navigate = useNavigate();
 
     const getTaskID = () => ++taskID;
     const validateForm = () =>{
@@ -44,6 +47,11 @@ export const AddTask = () => {
             e.date = "";
         }
         (isValid) ? saveData() : setErrors(e);
+
+        // move to view
+        navigate("/view/C",{
+            
+        });
     }
     const saveData = () => {
         let id = getTaskID();
