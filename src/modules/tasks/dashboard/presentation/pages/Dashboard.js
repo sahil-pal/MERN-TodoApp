@@ -1,6 +1,6 @@
 import { Header } from "../widgets/Header";
 import { SideMenu } from "../widgets/SideMenu";
-import { Route,Switch } from "react-router";
+import { Route,Routes } from "react-router";
 import {AddTask} from "../../../crud/presentation/pages/AddTask";
 import {UpdateTask} from "../../../crud/presentation/pages/UpdateTask";
 import {DeleteTask} from "../../../crud/presentation/pages/DeleteTask";
@@ -18,16 +18,16 @@ export const DashBoard = () =>{
                    <SideMenu/>
                    <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-2 pb-1 mb-3 ">
-                            <Switch>
-                                <Route exact path="/" component={Summary}/>
-                                <Route  path="/add" component={AddTask}/>
+                            <Routes>
+                                {/* Version 5 way <Route exact path="/" component={Summary}/> */}
+                                <Route exact path="/" element={<Summary/>}/>
+                                <Route  path="/add" element={<AddTask/>}/>
                                 {/* Status of View : Completed Task or Pending Tasks */}
-                                <Route exact path="/view/:status" component={ViewTask}/>
-                                <Route exact path="/update" component={UpdateTask}/>
-                                <Route exact path="/delete" component={DeleteTask}/>
-                                <Route exact path="/search" component={SearchTask}/>
-                                <Route component={Error}/>
-                            </Switch>
+                                <Route exact path="/view/:status" element={<ViewTask/>}/>
+                                <Route exact path="/delete" element={<DeleteTask/>}/>
+                                <Route exact path="/search" element={<SearchTask/>}/>
+                                <Route path="*" element={<Error/>}/>
+                            </Routes>
                         </div>
                     </main>
                 </div>

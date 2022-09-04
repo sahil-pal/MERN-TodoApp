@@ -1,12 +1,15 @@
 import { useState, useRef, useContext } from "react";
+import { useSearchParams } from "react-router-dom";
 import Task from "../../domain/model/Task";
 import { taskContext } from "../../provider/TaskContext";
 
-export const AddTask = (props) => {
-    const qs = props.location.search;
-    const queryStringObj = new URLSearchParams(qs);
+export const AddTask = () => {
+
+    // const qs = props.location.search;
+    // const queryStringObj = new URLSearchParams(qs);
+    const [params] = useSearchParams();
     let flag = "";
-    queryStringObj.forEach((e)=> flag = e);
+    params.forEach((e)=> flag = e);
 
     let taskID = 0;
     let name = useRef('');
@@ -50,7 +53,7 @@ export const AddTask = (props) => {
         let colorData = color.current.value;
         let task = new Task(id,nameData,imptData,dateData,colorData);
         TaskContext.tasks.push(task);
-        console.log(TaskContext.tasks);
+        clearForm();
     }
     const clearForm = () =>{
         setErrors({});

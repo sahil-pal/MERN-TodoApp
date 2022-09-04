@@ -1,6 +1,9 @@
+import { useParams } from "react-router-dom";
 import { taskContext } from "../../provider/TaskContext";
 
-export const ViewTask = (props) =>{
+export const ViewTask = () =>{
+
+    const {status} = useParams(); 
 
     const createTableRow = (taskObj,index) =>{
         return(
@@ -16,7 +19,7 @@ export const ViewTask = (props) =>{
 
     return (
         <div class="col p-2 m-2">
-            <h1 className="h2 border-bottom">View Task {props.match.params.status === 'C' ? "- Completed" : "Pending"}</h1>
+            <h1 className="h2 border-bottom">View Task {status === 'C' ? "- Completed" : "Pending"}</h1>
             <br/>
             <table className="table table-striped table-hover">
                 <thead>
